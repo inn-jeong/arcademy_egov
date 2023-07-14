@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Dept">
+
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+<!-- 	type="": 리턴타입을 alias="deptVO"로 받아서 처리 -->
+	<typeAlias  alias="deptVO" type="egovframework.example.sample.service.DeptVO"/>
+
+
+<!-- 	##: dao에서 넘어오는 vo -->
+<!-- 	"deptDAO.insertDept",vo -->
+	<insert id="deptDAO.insertDept">
+		<![CDATA[
+			INSERT INTO DEPT 
+				( deptno
+				  , dname
+				  , loc	)
+			VALUES ( #deptno#
+				  , #dname#
+				  , #loc# )
+		]]>
+	</insert>
+	<select id="deptDAO.selectDept" resultClass="deptVO">
+        <![CDATA[
+            SELECT deptno
+				 , dname
+				 , loc
+            FROM DEPT 
+        ]]>
+    </select>
+</sqlMap>

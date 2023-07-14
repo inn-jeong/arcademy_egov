@@ -1,0 +1,54 @@
+package egovframework.example.sample.web;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import egovframework.example.sample.service.DeptService;
+import egovframework.example.sample.service.DeptVO;
+import egovframework.example.sample.service.SampleDefaultVO;
+import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
+import lombok.extern.slf4j.Slf4j;
+
+@Controller
+@Slf4j
+public class DeptController {
+	
+	@Resource(name = "deptService")
+	private DeptService deptService;
+	
+	@RequestMapping(value = "/deptWrite.do")
+	public String deptWrite() {
+		return "dept/deptWrite";
+	}
+	
+	@RequestMapping(value = "/deptWriteSave.do")
+//	public String deptWriteSave(String deptno,String dname) {
+	public String deptWriteSave(DeptVO vo) throws Exception {
+//		log.info("부서번호: "+deptno);
+//		log.info("부서이름: "+dname);
+		log.info("부서번호: "+vo.getDeptno());
+		log.info("부서이름: "+vo.getDname());
+		log.info("부서위치: "+vo.getLoc());
+		
+		String result = deptService.insertDept(vo); 
+		log.info("@result ===>"+result);
+		
+		return "dept/deptWrite";
+	}
+	
+	@RequestMapping(value = "/deptList.do")
+	public String selectDeptList(DeptVO vo, ModelMap model) throws Exception {
+
+		List<?> list = deptService.selectDeptList(vo);
+		log.info("@# list ====> "+list);
+		model.addAttribute("resultList", list);
+
+		return "dept/deptList";
+	}
+}
