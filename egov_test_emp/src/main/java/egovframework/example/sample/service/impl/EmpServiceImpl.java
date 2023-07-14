@@ -27,4 +27,14 @@ public class EmpServiceImpl extends EgovAbstractServiceImpl implements EmpServic
 		return empDAO.selectEmpList(vo);
 	}
 
+	@Override
+	public EmpVO selectEmpDetail(int empno) throws Exception {
+		return empDAO.selectEmpDetail(empno);
+	}
+
+	@Override
+	public void deleteEmp(int empno) throws Exception {
+		empDAO.deleteEmp(empno);
+	}
+
 }

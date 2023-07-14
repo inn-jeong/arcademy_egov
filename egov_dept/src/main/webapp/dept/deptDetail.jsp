@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,19 +18,25 @@
 </head>
 <body>
 	<table>
-		<caption><b>바보</b></caption>
 		<tr>
 			<th>부서번호</th>
-			<th>부서이름</th>
-			<th>부서위치</th>
+			<td> ${deptVO.deptno} </td>
 		</tr>
-		<c:forEach var="result" items="${resultList}" varStatus="status">
-  			<tr>
-  				<td>${result.deptno}</td>
-  				<td> <a href="deptDetail.do?deptno=${result.deptno}">${result.dname}</a> </td>
-  				<td>${result.loc}</td>
-  			</tr>
-		</c:forEach>
+		<tr>
+			<th>부서이름</th>
+			<td> ${deptVO.dname} </td>
+		</tr>
+		<tr>
+			<th>부서위치</th>
+			<td> ${deptVO.loc} </td>
+		</tr>
+		<tr>
+			<td align="center" colspan="2">
+				<button onclick="location='deptDelete.do?deptno=${deptVO.deptno}'">삭제</button>
+				<button>수정</button>
+				<button onclick="location='deptList.do'">목록보기</button>
+			</td>
+		</tr>
 	</table>
 </body>
 </html>

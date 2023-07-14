@@ -19,10 +19,23 @@
 	</insert>
 	<select id="empDAO.selectEmp" resultClass="empVO">
         <![CDATA[
-            SELECT empno
-				 , ename
-				 , deptno
+            SELECT *
             FROM EMP 
         ]]>
     </select>
+    <select id="empDAO.selectEmpDetail" resultClass="empVO">
+        <![CDATA[
+            SELECT *
+            FROM EMP 
+            where empno=#empno#
+        ]]>
+    </select>
+    
+    <delete id="empDAO.deleteEmp">
+		<![CDATA[
+			DELETE FROM EMP 
+			WHERE empno=#empno#
+		]]>
+	</delete>
+    
 </sqlMap>

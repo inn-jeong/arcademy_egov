@@ -5,13 +5,17 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.support.SessionStatus;
 
 import egovframework.example.sample.service.DeptService;
 import egovframework.example.sample.service.DeptVO;
 import egovframework.example.sample.service.SampleDefaultVO;
+import egovframework.example.sample.service.SampleVO;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 import lombok.extern.slf4j.Slf4j;
 
@@ -50,5 +54,21 @@ public class DeptController {
 		model.addAttribute("resultList", list);
 
 		return "dept/deptList";
+	}
+	
+	@RequestMapping(value = "/deptDetail.do")
+	public String selectDeptDetail(int deptno, ModelMap model) throws Exception {
+
+		DeptVO vo = deptService.selectDeptDetail(deptno);
+		log.info("@# vo ===>"+vo);
+		model.addAttribute("deptVO", vo);
+
+		return "dept/deptDetail";
+	}
+	
+	@RequestMapping("/deptDelete.do")
+	public String deleteDept(int deptno) throws Exception {
+		deptService.deleteDept(deptno);
+		return "forward:/deptList.do";
 	}
 }

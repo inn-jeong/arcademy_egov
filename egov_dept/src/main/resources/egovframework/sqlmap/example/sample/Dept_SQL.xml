@@ -29,4 +29,22 @@
             FROM DEPT 
         ]]>
     </select>
+    
+    <select id="deptDAO.selectDeptDetail" resultClass="deptVO">
+        <![CDATA[
+            SELECT
+                deptno
+				 , dname
+				 , loc
+            FROM DEPT 
+            WHERE deptno=#deptno#
+        ]]>
+    </select>
+    
+    <delete id="deptDAO.deleteDept">
+		<![CDATA[
+			DELETE FROM DEPT 
+			WHERE deptno=#deptno#
+		]]>
+	</delete>
 </sqlMap>

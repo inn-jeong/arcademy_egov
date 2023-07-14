@@ -6,10 +6,14 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.support.SessionStatus;
 
 import egovframework.example.sample.service.EmpService;
 import egovframework.example.sample.service.EmpVO;
+import egovframework.example.sample.service.SampleDefaultVO;
+import egovframework.example.sample.service.SampleVO;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
@@ -41,8 +45,24 @@ public class EmpController {
 
 		List<?> list = empService.selectEmpList(vo);
 		log.info("@# list ====> "+list);
+		
 		model.addAttribute("resultList", list);
 
 		return "emp/empList";
+	}
+	@RequestMapping(value = "/empDetail.do")
+	public String selectempDetail(int empno, ModelMap model) throws Exception {
+
+		EmpVO vo = empService.selectEmpDetail(empno);
+		log.info("@# vo ===>"+vo);
+		model.addAttribute("empVO", vo);
+
+		return "emp/empDetail";
+	}
+	
+	@RequestMapping("/empDelete.do")
+	public String deleteEmp(int empno) throws Exception {
+		empService.deleteEmp(empno);
+		return "forward:/empList.do";
 	}
 }
