@@ -15,13 +15,16 @@ public class EmpDAO extends EgovAbstractDAO{
 	public String insertEmp(EmpVO vo) throws Exception {
 		return (String) insert("empDAO.insertEmp", vo);
 	}
-	public List<?> selectEmpList(EmpVO deptVO) throws Exception {
-		return list("empDAO.selectEmp", deptVO);
+	public List<?> selectEmpList(EmpVO vo) throws Exception {
+		return list("empDAO.selectEmp", vo);
 	}
 	public EmpVO selectEmpDetail(int empno) throws Exception {
 		return (EmpVO) select("empDAO.selectEmpDetail", empno);
 	}
 	public void deleteEmp(int empno) throws Exception {
 		delete("empDAO.deleteEmp", empno);
+	}
+	public void updateEmp(EmpVO vo) throws Exception {
+		update("empDAO.updateEmp", vo);
 	}
 }

@@ -17,8 +17,8 @@ public class DeptDAO extends EgovAbstractDAO{
 		return (String) insert("deptDAO.insertDept", vo);
 	}
 	
-	public List<?> selectDeptList(DeptVO deptVO) throws Exception {
-		return list("deptDAO.selectDept", deptVO);
+	public List<?> selectDeptList(DeptVO vo) throws Exception {
+		return list("deptDAO.selectDept", vo);
 	}
 	
 	public DeptVO selectDeptDetail(int deptno) throws Exception {
@@ -27,5 +27,9 @@ public class DeptDAO extends EgovAbstractDAO{
 	
 	public void deleteDept(int deptno) throws Exception {
 		delete("deptDAO.deleteDept", deptno);
+	}
+	
+	public void updateDept(DeptVO vo) throws Exception {
+		update("deptDAO.updateDept", vo);
 	}
 }

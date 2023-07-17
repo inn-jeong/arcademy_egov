@@ -47,4 +47,13 @@
 			WHERE deptno=#deptno#
 		]]>
 	</delete>
+	
+	<update id="deptDAO.updateDept">
+		<![CDATA[
+			UPDATE DEPT
+			SET dname=#dname#
+				, loc=#loc#
+			WHERE deptno=#deptno#
+		]]>
+	</update>
 </sqlMap>

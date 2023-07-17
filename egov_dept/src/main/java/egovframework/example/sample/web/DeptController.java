@@ -7,9 +7,11 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 
 import egovframework.example.sample.service.DeptService;
@@ -43,7 +45,7 @@ public class DeptController {
 		String result = deptService.insertDept(vo); 
 		log.info("@result ===>"+result);
 		
-		return "dept/deptWrite";
+		return "forward:/deptList.do";
 	}
 	
 	@RequestMapping(value = "/deptList.do")
@@ -71,4 +73,22 @@ public class DeptController {
 		deptService.deleteDept(deptno);
 		return "forward:/deptList.do";
 	}
+	
+	@RequestMapping("/deptModify.do")
+	public String updateDept(int deptno, Model model) throws Exception {
+		DeptVO vo = deptService.selectDeptDetail(deptno);
+		log.info("@# vo ===>"+vo);
+		
+		model.addAttribute("deptVO",vo);
+		return "dept/deptModify";
+	}
+	
+	@RequestMapping("/deptModifySave.do")
+	public String updateDept(DeptVO vo) throws Exception {
+
+		deptService.updateDept(vo);
+		
+		return "forward:/deptList.do";
+	}
+	
 }

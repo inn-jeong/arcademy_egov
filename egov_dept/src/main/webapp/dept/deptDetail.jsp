@@ -33,7 +33,7 @@
 		<tr>
 			<td align="center" colspan="2">
 				<button onclick="location='deptDelete.do?deptno=${deptVO.deptno}'">삭제</button>
-				<button>수정</button>
+				<button onclick="location='deptModify.do?deptno=${deptVO.deptno}'">수정</button>
 				<button onclick="location='deptList.do'">목록보기</button>
 			</td>
 		</tr>

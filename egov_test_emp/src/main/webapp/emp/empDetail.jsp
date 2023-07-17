@@ -53,7 +53,7 @@
 		</tr>
 		<tr>
 			<td colspan="2" align="center">
-				<button>수정</button>
+				<button onclick="location='empModify.do?empno=${empVO.empno}'">수정</button>
 				<button onclick="location='empDelete.do?empno=${empVO.empno}'">삭제</button>
 				<a href="empList.do">
 					<button>목록보기</button>

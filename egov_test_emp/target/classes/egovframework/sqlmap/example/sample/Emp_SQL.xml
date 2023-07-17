@@ -37,5 +37,14 @@
 			WHERE empno=#empno#
 		]]>
 	</delete>
+	
+	<update id="empDAO.updateEmp">
+		<![CDATA[
+			UPDATE EMP
+			SET ename=#ename#
+				, deptno=#deptno#
+			WHERE empno=#empno#
+		]]>
+	</update>
     
 </sqlMap>

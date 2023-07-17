@@ -7,4 +7,5 @@ public interface EmpService {
 	List<?> selectEmpList(EmpVO vo) throws Exception;
 	EmpVO selectEmpDetail(int empno) throws Exception;
 	void deleteEmp(int empno) throws Exception;
+	void updateEmp(EmpVO vo) throws Exception;
 }

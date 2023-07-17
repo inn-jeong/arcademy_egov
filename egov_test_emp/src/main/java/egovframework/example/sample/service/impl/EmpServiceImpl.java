@@ -37,4 +37,9 @@ public class EmpServiceImpl extends EgovAbstractServiceImpl implements EmpServic
 		empDAO.deleteEmp(empno);
 	}
 
+	@Override
+	public void updateEmp(EmpVO vo) throws Exception {
+		empDAO.updateEmp(vo);		
+	}
+
 }

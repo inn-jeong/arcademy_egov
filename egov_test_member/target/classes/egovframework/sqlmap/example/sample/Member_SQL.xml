@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Member">
+
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="memberVO" type="egovframework.example.sample.service.MemberVO"/>
+
+	<insert id="memberDAO.insertMember">
+		<![CDATA[
+			INSERT INTO MEMBERT 
+				( MEM_UID
+				  , MEM_PWD
+				  , MEM_NAME)
+			VALUES ( #mem_uid#
+				  , #mem_pwd#
+				  , #mem_name#)
+		]]>
+	</insert>
+    
+    <select id="memberDAO.selectMember" resultClass="memberVO">
+        <![CDATA[
+            SELECT
+                *
+            FROM MEMBERT 
+            WHERE MEM_UID=#mem_uid#
+        ]]>
+    </select>
+
+</sqlMap>

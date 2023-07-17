@@ -5,15 +5,12 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.support.SessionStatus;
 
 import egovframework.example.sample.service.EmpService;
 import egovframework.example.sample.service.EmpVO;
-import egovframework.example.sample.service.SampleDefaultVO;
-import egovframework.example.sample.service.SampleVO;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
@@ -37,7 +34,7 @@ public class EmpController {
 		String result = empService.insertEmp(vo); 
 		log.info("@result ===>"+result);
 		
-		return "emp/empWrite";
+		return "forward:/empList.do";
 	}
 	
 	@RequestMapping(value = "/empList.do")
@@ -63,6 +60,23 @@ public class EmpController {
 	@RequestMapping("/empDelete.do")
 	public String deleteEmp(int empno) throws Exception {
 		empService.deleteEmp(empno);
+		return "forward:/empList.do";
+	}
+	
+	@RequestMapping("/empModify.do")
+	public String updateEmp(int empno, Model model) throws Exception {
+		EmpVO vo = empService.selectEmpDetail(empno);
+		log.info("@# vo ===>"+vo);
+		
+		model.addAttribute("empVO",vo);
+		return "emp/empModify";
+	}
+	
+	@RequestMapping("/empModifySave.do")
+	public String updateEmp(EmpVO vo) throws Exception {
+
+		empService.updateEmp(vo);
+		
 		return "forward:/empList.do";
 	}
 }

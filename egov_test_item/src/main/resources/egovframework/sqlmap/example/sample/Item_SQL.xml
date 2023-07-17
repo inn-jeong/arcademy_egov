@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Emp">
+
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="itemVO" type="egovframework.example.sample.service.ItemVO"/>
+
+	<insert id="itemDAO.insertItem">
+		<![CDATA[
+			INSERT INTO ITEM 
+				( name
+				  , price
+				  , description)
+			VALUES ( #name#
+				  , #price#
+				  , #description#)
+		]]>
+	</insert>
+	
+	<select id="itemDAO.selectItemList" resultClass="itemVO">
+			SELECT
+				*
+			FROM ITEM		
+	</select>
+    
+</sqlMap>
