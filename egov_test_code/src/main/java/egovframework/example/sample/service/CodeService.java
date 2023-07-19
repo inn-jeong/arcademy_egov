@@ -7,4 +7,6 @@ public interface CodeService {
 	List<?> selectCodeList(CodeVO vo) throws Exception;
 	int selectCodeListTotCnt();
 	void deleteCode(CodeVO vo) throws Exception;
+	void updateCode(CodeVO vo) throws Exception;
+	CodeVO selectCode(CodeVO vo) throws Exception;
 }

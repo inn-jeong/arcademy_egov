@@ -7,9 +7,11 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 
 import egovframework.example.sample.service.CodeService;
@@ -52,6 +54,21 @@ public class CodeController {
 	@RequestMapping("/deleteCode.do")
 	public String deleteSample(CodeVO vo) throws Exception {
 		codeService.deleteCode(vo);
+		return "redirect:/codeList.do";
+	}
+	
+	@RequestMapping("/updateCodeView.do")
+	public String updateCodeView(CodeVO vo, Model model) throws Exception {
+		log.info("@# updateView start");
+		model.addAttribute("vo",codeService.selectCode(vo));
+		return "code/codeModify";
+	}
+	
+	@RequestMapping("/updateCode.do")
+	public String updateSample(CodeVO vo, Model model) throws Exception {
+		log.info("@# update start");
+		log.info("@# update vo ===> "+vo);
+		codeService.updateCode(vo);
 		return "redirect:/codeList.do";
 	}
 }

@@ -34,17 +34,24 @@
 			<th>코드명</th>
 			<th>구분</th>
 		</tr>
+		<c:set var="count" value="1"/>
 		<c:forEach var="result" items="${resultList}" varStatus="status">
   			<tr>
-  				<td align="center">${result.code}</td>
+<%--   				<td align="center">${result.code}</td> --%>
+				<td align="center">${count}</td>
   				<td align="center"> 
 					<c:if test="${result.gid==1}">job</c:if>
 					<c:if test="${result.gid==2}">hobby</c:if>
 				</td>
   				<td align="center">${result.name}</td>
 <%--   				<td align="center"> <button type="button" onclick="location='deleteCode.do?code=${result.code}'">삭제</button> </td> --%>
-  				<td align="center"> <button type="button" onclick="fn_delete('${result.code}')">삭제</button> </td>
+  				<td align="center"> 
+  					<button type="button" onclick="location='updateCodeView.do?code=${result.code}'">수정</button> 
+  					<button type="button" onclick="fn_delete('${result.code}')">삭제</button>
+  				</td>
   			</tr>
+			<c:set var="count" value="${count+1}"/>
+  			
 		</c:forEach>
 		<tr>
 			<td colspan="4" align="center"> <button type="button" onclick="location='codeWrite.do'">새로작성</button> </td>

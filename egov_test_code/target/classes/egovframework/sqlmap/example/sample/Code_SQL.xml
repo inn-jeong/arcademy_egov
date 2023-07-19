@@ -35,4 +35,22 @@
 			WHERE CODE=#code#
 		]]>
 	</delete>
+	
+	<update id="codeDAO.updateCode">
+		<![CDATA[
+			UPDATE CODES
+			SET gid=#gid#
+				, NAME=#name#
+			WHERE CODE=#code#
+		]]>
+	</update>
+	
+	<select id="codeDAO.selectCode" resultClass="codeVO">
+        <![CDATA[
+            SELECT
+                *
+            FROM CODES 
+            WHERE CODE=#code#
+        ]]>
+    </select>
 </sqlMap>

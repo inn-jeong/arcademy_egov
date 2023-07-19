@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import egovframework.example.sample.service.CodeService;
 import egovframework.example.sample.service.CodeVO;
+import egovframework.example.sample.service.SampleVO;
 import egovframework.rte.fdl.cmmn.EgovAbstractServiceImpl;
 
 @Service("codeService")
@@ -35,5 +36,19 @@ public class CodeServiceImpl extends EgovAbstractServiceImpl implements CodeServ
 	public void deleteCode(CodeVO vo) throws Exception {
 		codeDAO.deleteCode(vo);
 	}
+
+	@Override
+	public void updateCode(CodeVO vo) throws Exception {
+		codeDAO.updateCode(vo);
+	}
+
+	@Override
+	public CodeVO selectCode(CodeVO vo) throws Exception {
+		CodeVO resultVO = codeDAO.selectCode(vo);
+		if (resultVO == null)
+			throw processException("info.nodata.msg");
+		return resultVO;
+	}
+	
 
 }
