@@ -62,9 +62,30 @@
                 <enabled>false</enabled>
             </snapshots>
         </repository>
+            <!-- 오라클 설정 start -->
+        <repository>
+        	<id>codelds</id>
+        	<url>https://code.lds.org/nexus/content/groups/main-repo</url>
+        </repository>
+        <!-- 오라클 설정 end -->
+        
     </repositories>
 
 	<dependencies>
+        <!-- 오라클 설정 start -->
+		<dependency>
+			<groupId>ojdbc</groupId>
+			<artifactId>ojdbc</artifactId>
+			<version>6-11</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/ojdbc6.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>1.4</version>
+		</dependency>
+        <!-- 오라클 설정 end -->
 		<!-- 표준프레임워크 실행환경 -->
         <dependency>
 		    <groupId>egovframework.rte</groupId>
@@ -123,7 +144,13 @@
 			<artifactId>hsqldb</artifactId>
 			<version>2.5.0</version>
 		</dependency>
-
+		
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.24</version>
+			<scope>provided</scope>
+		</dependency>
         <!-- mysql이나 oracle DB 사용시 아래 설정 추가
         <dependency>
             <groupId>com.googlecode.log4jdbc</groupId>

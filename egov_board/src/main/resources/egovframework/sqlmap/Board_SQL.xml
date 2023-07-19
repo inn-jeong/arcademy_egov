@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Board">
+
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="boardVO" type="main.service.BoardVO"/>
+
+
+	<insert id="boardDAO.insertNBoard">
+		<![CDATA[
+			INSERT INTO NBOARD
+				(unq
+				,title
+				,pass
+				,name
+				,content
+				,hits
+				,rdate
+				)
+			VALUES(NBOARD_SEQ.nextval
+				,#title#
+				,#pass#
+				,#name#
+				,#content#
+				,0
+				,SYSDATE
+				)
+		]]>
+	</insert>
+	
+	<select id="boardDAO.selectNBoardList" resultClass="boardVO">
+			SELECT
+				unq,title,pass,name,content,hits,TO_CHAR(rdate,'YYYY-MM-DD') rdate1
+			FROM NBOARD
+			ORDER BY unq
+	</select>
+	
+	<select id="boardDAO.selectNBoard" resultClass="boardVO">
+        <![CDATA[
+            SELECT
+				unq,title,pass,name,content,hits,TO_CHAR(rdate,'YYYY-MM-DD') rdate1
+            FROM NBOARD 
+            WHERE unq=#unq#
+        ]]>
+    </select>
+    
+    <update id="boardDAO.updateHits">
+		<![CDATA[
+			UPDATE NBOARD
+			SET hits=hits+1
+			WHERE UNQ=#unq#
+		]]>
+	</update>
+	
+	<update id="boardDAO.updateNBoard" >
+		<![CDATA[
+			UPDATE NBOARD
+			SET title=#title#
+				,pass=#pass#
+				,name=#name#
+				,content=#content#
+			WHERE UNQ=#unq#
+		]]>
+	</update>
+</sqlMap>
